@@ -1,0 +1,123 @@
+{
+    "project": {
+        "name": "Docs",
+        "description": "Docs"
+    },
+    "files": {
+        "..\\..\\webaudio-knob\\webaudio-knob.html": {
+            "name": "..\\..\\webaudio-knob\\webaudio-knob.html",
+            "modules": {},
+            "classes": {
+                "webaudio-knob": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "webaudio-knob": {
+            "name": "webaudio-knob",
+            "shortname": "webaudio-knob",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "..\\..\\webaudio-knob\\webaudio-knob.html",
+            "line": 6,
+            "description": "Visual knob element \n\nExample:\n\n    <webaudio-knob src=\"img/MiniBrute.png\" min=\"-127\" max=\"127\" value=\"0\" step=\"3\" diameter=\"\" sprites=\"100\"></webaudio-knob>\n\nDeveloped by Eiji Kitamura (http://google.com/+agektmr).\nKnobs' design created by WebKnobMan (http://www.g200kg.com/en/webknobman/gallery.php)."
+        }
+    },
+    "classitems": [
+        {
+            "file": "..\\..\\webaudio-knob\\webaudio-knob.html",
+            "line": 18,
+            "description": "Fired when the knob value changes.",
+            "itemtype": "event",
+            "name": "change",
+            "class": "webaudio-knob"
+        },
+        {
+            "file": "..\\..\\webaudio-knob\\webaudio-knob.html",
+            "line": 57,
+            "description": "Value of the knob.",
+            "itemtype": "attribute",
+            "name": "value",
+            "type": "Number",
+            "default": "0",
+            "class": "webaudio-knob"
+        },
+        {
+            "file": "..\\..\\webaudio-knob\\webaudio-knob.html",
+            "line": 65,
+            "description": "Minimum value of the knob.",
+            "itemtype": "attribute",
+            "name": "min",
+            "type": "Number",
+            "default": "0",
+            "class": "webaudio-knob"
+        },
+        {
+            "file": "..\\..\\webaudio-knob\\webaudio-knob.html",
+            "line": 73,
+            "description": "Maximum value of the knob.",
+            "itemtype": "attribute",
+            "name": "max",
+            "type": "Number",
+            "default": "127",
+            "class": "webaudio-knob"
+        },
+        {
+            "file": "..\\..\\webaudio-knob\\webaudio-knob.html",
+            "line": 81,
+            "description": "Diameter of single knob.",
+            "itemtype": "attribute",
+            "name": "diameter",
+            "type": "Number",
+            "default": "64",
+            "class": "webaudio-knob"
+        },
+        {
+            "file": "..\\..\\webaudio-knob\\webaudio-knob.html",
+            "line": 89,
+            "description": "Value change steps by moving mouse.",
+            "itemtype": "attribute",
+            "name": "step",
+            "type": "Number",
+            "default": "3",
+            "class": "webaudio-knob"
+        },
+        {
+            "file": "..\\..\\webaudio-knob\\webaudio-knob.html",
+            "line": 97,
+            "description": "Value of the knob.",
+            "itemtype": "attribute",
+            "name": "value",
+            "type": "Number",
+            "default": "0",
+            "class": "webaudio-knob"
+        },
+        {
+            "file": "..\\..\\webaudio-knob\\webaudio-knob.html",
+            "line": 105,
+            "description": "Number of sprites in the knob image.",
+            "itemtype": "attribute",
+            "name": "sprites",
+            "type": "Number",
+            "default": "30",
+            "class": "webaudio-knob"
+        },
+        {
+            "file": "..\\..\\webaudio-knob\\webaudio-knob.html",
+            "line": 113,
+            "class": "webaudio-knob"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type",
+            "line": " ..\\..\\webaudio-knob\\webaudio-knob.html:113"
+        }
+    ]
+}

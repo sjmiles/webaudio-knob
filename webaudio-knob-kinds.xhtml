@@ -1,0 +1,198 @@
+<!--
+  Developed by Eiji Kitamura (http://google.com/+agektmr).
+  Knobs' design created by WebKnobMan (http://www.g200kg.com/en/webknobman/gallery.php).
+-->
+<!--
+/**
+ * @module webaudio-knob
+ */
+/**
+ * Visual knob element 
+ *
+ * Example:
+ *
+ *     <webaudio-knob src="img/MiniBrute.png" min="-127" max="127" value="0" step="3" diameter="" sprites="100"></webaudio-knob>
+ *
+ * @class webaudio-knob
+ */
+/**
+ * Fired when a response is received.
+ * 
+ * @event polymer-response
+ */
+/**
+ * Fired when an error is received.
+ * 
+ * @event polymer-error
+ */
+/**
+ * Fired whenever a response or an error is received.
+ *
+ * @event polymer-complete
+ */
+-->
+<link rel="import" href="../polymer/polymer.html">
+<polymer-element name="webaudio-knob" attributes="value min max step sprites diameter src kind" on-mousedown="{{mousedown}}" on-trackstart="{{trackStart}}" on-track="{{track}}" on-trackend="{{trackEnd}}">
+  <template>
+    <div class="knob" id="knob" style="background-image: url({{src}}); width: {{diameter}}px; height: {{diameter}}px; background-position: {{backgroundPositionValue}};" draggable="false">
+      <span id="valueTip">{{value}}</span>
+    </div>
+    <style>
+      :host {
+        display: inline-block;
+      }
+      #knob {
+        cursor: pointer;
+        width: 64px;
+        height: 64px;
+        background-position-y: -64px;
+        position: relative;
+      }
+      #valueTip {
+        opacity: 0;
+        border: solid 1px #666;
+        background-color: #eee;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 1px 4px;
+        font-size: 10px;
+        font-family: Helvetica;
+        transition: opacity 0.3s;
+      }
+    </style>
+  </template>
+  <script>
+    Polymer('webaudio-knob', {
+      /**
+       * Value of the knob.
+       * 
+       * @attribute value
+       * @type Number
+       * @default 0
+      */
+      value: 0,
+      /**
+       * Minimum value of the knob.
+       * 
+       * @attribute min
+       * @type Number
+       * @default 0
+      */
+      min: 0,
+      /**
+       * Maximum value of the knob.
+       * 
+       * @attribute max
+       * @type Number
+       * @default 127
+      */
+      max: 127,
+      /**
+       * Diameter of single knob.
+       * 
+       * @attribute diameter
+       * @type Number
+       * @default 64
+      */
+      diameter: 64,
+      /**
+       * Value change steps by moving mouse.
+       * 
+       * @attribute step
+       * @type Number
+       * @default 3
+      */
+      step: 3,
+      /**
+       * Value of the knob.
+       * 
+       * @attribute value
+       * @type Number
+       * @default 0
+      */
+      sprites: 30,
+      /**
+       * Number of sprites in the knob image.
+       * 
+       * @attribute sprites
+       * @type Number
+       * @default 30
+      */
+      src: 'img/org_amp.png',
+      kind: 'default',
+      kinds: {
+        'default': {
+          src: 'org_amp.png',
+          min: 0,
+          max: 127,
+          step: 3,
+          sprites: 30,
+        },
+        ms2000: {
+          src: 'MS2000.png',
+          min: 0,
+          max: 127,
+          step: 3,
+          sprites: 100
+        },
+        minibrute: {
+          src: 'MiniBrute.png',
+          min: -127,
+          max: 127,
+          step: 3,
+          sprites: 100
+        },
+        phatty: {
+          src: 'LittlePhatty.png',
+          min: 0,
+          max: 1024,
+          step: 10,
+          sprites: 100
+        }
+      },
+      /**/
+      create: function() {
+        this.src = this.resolvePath(this.src);
+      },
+      ready: function() {
+        this.srcChanged();
+        this.valueChanged();
+      },
+      kindChanged: function() {
+        var kind = this.kinds[this.kind] || this.kinds.default;
+        this.src = this.resolvePath('img/' + kind.src);
+        this.min = kind.min;
+        this.max = kind.max;
+        this.step = kind.step;
+        this.sprites = kind.sprites;
+        this.value = 0;
+        this.valueChanged();
+      },
+      srcChanged: function() {
+        // TODO(sjmiles): src doesn't bind properly for some reason
+        this.$.knob.style.backgroundImage = 'url(' + this.src + ')';
+      },
+      valueChanged: function() {
+        this.value = Math.min(this.max, Math.max(this.min, this.value));
+        var range = Math.abs(this.max - this.min);
+        var value = '-' + Math.floor(this.sprites / range * (range - this.min + this.value) + 1) * this.diameter + 'px';
+        this.backgroundPositionValue = 'center ' + value;
+        this.fire('change');
+      },
+      mousedown: function(e) {
+        // avoid selecting text when dragging the knob
+        e.preventDefault();
+      },
+      trackStart: function() {
+        this.$.valueTip.style.opacity = 0.8;
+      },
+      track: function(event) {
+        this.value += (event.ddx - event.ddy) * this.step;
+      },
+      trackEnd: function() {
+        this.$.valueTip.style.opacity = 0;
+      }
+    });
+  </script>
+</polymer-element>
